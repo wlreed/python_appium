@@ -1,15 +1,21 @@
 #!/usr/bin/env python
+"""
+POC Appium tests
+"""
 
 # Python/Pytest
-import pytest
 import time
+import pytest
 
 from appium.webdriver.common.appiumby import AppiumBy
+# from conftest import logging
 
 @pytest.mark.ios
 def test_ios_click(appium_service, ios_driver_factory):
-    # Usage of the context manager ensures the driver session is closed properly
-    # after the test completes. Otherwise, make sure to call `driver.quit()` on teardown.
+    """
+    Usage of the context manager ensures the driver session is closed properly
+    after the test completes. Otherwise, make sure to call `driver.quit()` on teardown.
+    """
     with ios_driver_factory({
         'appium:automationName': 'XCUITest',
         'appium:platformName': 'iOS',
@@ -23,8 +29,10 @@ def test_ios_click(appium_service, ios_driver_factory):
 
 @pytest.mark.android
 def test_android_click(appium_service, android_driver_factory):
-    # Usage of the context manager ensures the driver session is closed properly
-    # after the test completes. Otherwise, make sure to call `driver.quit()` on teardown.
+    """
+    Usage of the context manager ensures the driver session is closed properly
+    after the test completes. Otherwise, make sure to call `driver.quit()` on teardown.
+    """
     with android_driver_factory({
         'appium:automationName': 'UiAutomator2',
         'appium:platformName': 'Android',
