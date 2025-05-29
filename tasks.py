@@ -15,9 +15,19 @@ def pytest(c, o):
 @task
 def ios(c):
     '''run ios suite of tests'''
-    subprocess.call(['pytest', '-m ios', '--junit-xml=logs/junit.xml'])
+    subprocess.call(['pytest', '-m ios', '--junit-xml=logs/junit.xml', '-v'])
 
 @task
 def android(c):
     '''run android suite of tests'''
-    subprocess.call(['pytest', '-m android', '--junit-xml=logs/junit.xml'])
+    subprocess.call(['pytest', '-m android', '--junit-xml=logs/junit.xml', '-v'])
+
+@task
+def test(c):
+    '''test process'''
+    subprocess.call(['pytest', '-m test', '--junit-xml=logs/junit.xml', '-v'])
+
+@task
+def configed(c):
+    '''configed tests'''
+    subprocess.call(['pytest', '-m configed', '--junit-xml=logs/junit.xml', '-v'])
