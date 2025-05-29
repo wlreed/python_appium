@@ -1,0 +1,18 @@
+# Appium Android configs
+# appium:
+#   appium:automationName: "uiautomator2"
+#   appium:platformName: "android"
+#   appium:platformVersion: "10"
+#   appium:avd: "Pixel_6_API_31"
+#   appium:avdLaunchTimeout: "8000"
+#   appium:avdReadyTimeout: "400"
+#   appium:app: "apps/TheApp.apk"
+# Appium iOS configs
+appium:
+  appium:automationName: "XCUITest"
+  appium:platformName: "iOS"
+  appium:platformVersion: "17.2"
+  appium:deviceName: "iPhone 15"
+  appium:app: "apps/TheApp.app.zip"
+  appium:maxTypingFrequency: 10
+  appium:connectHardwareKeyboard: True
