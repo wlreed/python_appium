@@ -36,11 +36,28 @@ def appium_service():
     yield service
     service.stop()
 
-def create_driver(custom_opts = None):
-    """
-    Creates a driver based on a config file
-    """
-    #settings
+# For Page Obj Test
+@pytest.fixture(scope="function")
+def appium_driver(request):
+    driver = None
+    appium_settings = SETTINGS.configs['appium']
+    LOG.info(f"currently testing {appium_settings['appium:automationName']}")
+    capabilities = json.dumps(appium_settings)
+    LOG.info(f"capabilities: {capabilities}")
+    if (appium_settings['appium:automationName'] == 'uiautomator2'):
+        driver = webdriver.Remote(f'http://{APPIUM_HOST}:{APPIUM_PORT}',
+                              options=UiAutomator2Options().load_capabilities(json.loads(capabilities)))
+    else:
+        driver = webdriver.Remote(f'http://{APPIUM_HOST}:{APPIUM_PORT}',
+                              options=XCUITestOptions().load_capabilities(json.loads(capabilities)))
+    driver.implicitly_wait(10)
+    
+    def fin():
+        driver.quit()
+
+    request.addfinalizer(fin)
+
+    return driver
 
 def create_ios_driver(custom_opts = None):
     """
