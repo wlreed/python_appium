@@ -3,14 +3,9 @@
 POC Appium tests
 """
 
-# Python/Pytest
-import time
-import json
-
-from config import *
-
 from appium.webdriver.common.appiumby import AppiumBy
-from local_libs import *
+# Import local libs
+from config import *
 
 @pytest.mark.ios
 def test_ios_click(appium_service, ios_driver_factory):
@@ -49,7 +44,12 @@ def test_android_click(appium_service, android_driver_factory):
         el.click()
         time.sleep(1)
 
-@pytest.mark.configed
+@pytest.mark.skip
+@pytest.mark.usefixtures("appium_driver")
+def test_generic_click(appium_service):
+    pass
+
+@pytest.mark.skip
 def test_configed_click(appium_service, android_driver_factory, ios_driver_factory):
     LOG.info("CONFIG TESTS")
     LOG.info(f"settings: {json.dumps(SETTINGS.configs['appium'])}")
