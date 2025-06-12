@@ -11,10 +11,8 @@ class HomeScreen(Screen):
         LOG.info("instantiating HomeScreen")
         self.driver = driver
         super().__init__(driver)
+        LOG.info(f"driver: {driver}")
+        LOG.info(f"driver methods: {driver.__dict__}")
 
     def echo_box_element(self):
         return self.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='Echo Box')
-    
-    def click_echo_box_element(self):
-        LOG.info(f"Clicking Echo Box")
-        return self.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='Echo Box').click()

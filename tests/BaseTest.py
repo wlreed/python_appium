@@ -1,6 +1,5 @@
 from config import *
 
-#@pytest.mark.flaky(reruns=5)
-@pytest.mark.usefixtures("appium_driver")
+@pytest.mark.usefixtures("appium_service", "appium_driver")
 class BaseTest:
     pass
