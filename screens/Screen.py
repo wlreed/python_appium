@@ -12,7 +12,7 @@ class Screen:
         self.driver = driver
 
     def click(self, element):
-        LOG.info(f"clicking element: {element}")
+        LOG.info(f"clicking element: {element.text}")
         element.click()
     
     def send_keys(self, locator, content):
