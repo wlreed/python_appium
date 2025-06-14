@@ -58,3 +58,15 @@ def appium_driver(request):
     request.addfinalizer(fin)
 
     return driver
+
+@pytest.fixture(scope="function")
+def new_appium_driver(request):
+    driver = APM.__call__()
+    driver.implicitly_wait(10)
+    
+    def fin():
+        driver.quit()
+
+    request.addfinalizer(fin)
+
+    return driver

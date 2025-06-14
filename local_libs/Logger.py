@@ -5,6 +5,7 @@ import logging.config
 class Logger(metaclass=Singleton):
     logger = None
     def __call__(self, TIMESTAMP):
+        #super.__new__()
         logging.config.fileConfig("resources/log_settings.conf", 
                           defaults={ 'logfilename': 'results/' + TIMESTAMP + '/pytest.txt' })
         logger = logging.getLogger(__name__)
