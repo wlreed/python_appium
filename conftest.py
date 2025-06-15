@@ -61,7 +61,7 @@ def appium_driver(request):
 
 @pytest.fixture(scope="function")
 def new_appium_driver(request):
-    driver = APM.__call__()
+    driver = APM.__call__(APM)
     driver.implicitly_wait(10)
     
     def fin():

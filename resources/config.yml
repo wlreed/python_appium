@@ -16,3 +16,5 @@ appium:
   appium:app: "apps/TheApp.app.zip"
   appium:maxTypingFrequency: 10
   appium:connectHardwareKeyboard: True
+
+debug: True
