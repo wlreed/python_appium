@@ -14,19 +14,24 @@ class APM():
     APPIUM_HOST = '127.0.0.1'
     SETTINGS.__call__(SETTINGS)
     driver = None
+    automation_name = ""
 
     def __call__(self):
         super.__call__(self)
         if (self.driver == None):
             appium_settings = SETTINGS.configs['appium']
-            LOG.info(f"currently testing {appium_settings['appium:automationName']}")
+            self.automation_name = appium_settings['appium:automationName']
+            LOG.info(f"currently testing {self.automation_name}")
             capabilities = json.dumps(appium_settings)
             LOG.info(f"capabilities: {capabilities}")
-            if (appium_settings['appium:automationName'] == 'uiautomator2'):
+            if (self.automation_name == 'uiautomator2'):
                 self.driver = webdriver.Remote(f'http://{self.APPIUM_HOST}:{self.APPIUM_PORT}',
                               options=UiAutomator2Options().load_capabilities(json.loads(capabilities)))
-            else:
+            elif (self.automation_name == 'XCUITest'):
                 self.driver = webdriver.Remote(f'http://{self.APPIUM_HOST}:{self.APPIUM_PORT}',
                               options=XCUITestOptions().load_capabilities(json.loads(capabilities)))
+            else:
+                raise TypeError(f"Don't know how to test {self.automation_name}")
+
             self.driver.implicitly_wait(10)
         return self.driver

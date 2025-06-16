@@ -1,7 +1,7 @@
 # Appium Android configs
 # appium:
 #   appium:automationName: "uiautomator2"
-#   appium:platformName: "android"
+#   platformName: "android"
 #   appium:platformVersion: "10"
 #   appium:avd: "Pixel_6_API_31"
 #   appium:avdLaunchTimeout: "8000"
@@ -10,7 +10,7 @@
 # Appium iOS configs
 appium:
   appium:automationName: "XCUITest"
-  appium:platformName: "iOS"
+  platformName: "iOS"
   appium:platformVersion: "17.5"
   appium:deviceName: "iPhone 15"
   appium:app: "apps/TheApp.app.zip"
