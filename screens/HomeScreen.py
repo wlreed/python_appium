@@ -1,17 +1,26 @@
 from config import *
-from appium.webdriver.common.appiumby import AppiumBy
 
 from screens.Screen import Screen
 
 class HomeScreen(Screen):
-    driver = None
 
     def __init__(self):
         LOG.info("instantiating HomeScreen")
-        self.driver = APM.driver
+        self.string_map = dict(
+            echo_box = "Echo Box",
+            login = "Login Screen",
+            back_button_id = "Navigate Up",
+            back_button_predicate = "name == \"TheApp\" AND label == \"TheApp\" "
+    + "AND type == \"XCUIElementTypeButton\"",
+            clipboard = "Clipboard Demo"
+        )
         super().__init__
-        LOG.info(f"driver: {APM.driver}")
-        LOG.info(f"driver methods: {APM.driver.__dict__}")
 
     def echo_box_element(self):
-        return APM.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='Echo Box')
+        return self.find_element_by_id(self.string_map['echo_box'])
+
+    def login_element(self):
+        return self.find_element_by_id(self.string_map['login'])
+    
+    def clipboard_element(self):
+        return self.find_element_by_id(self.string_map['clipboard'])

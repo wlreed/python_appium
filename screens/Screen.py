@@ -14,6 +14,13 @@ class Screen:
     def click(self, element):
         LOG.info(f"clicking element: {element.text}")
         element.click()
+
+    def find_element_by_id(self, id):
+        return APM.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, 
+                                       value=id)
+    
+    def find_element_by_ios_predicate(self, predicate):
+        return APM.driver.find_element(by=AppiumBy.IOS_PREDICATE, value=predicate)
     
     def send_keys(self, locator, content):
         if str(locator).endswith("_XPATH"):
