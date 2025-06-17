@@ -7,12 +7,12 @@ class Screen:
         if cls is Screen:
             raise TypeError(f"only children of '{cls.__name__}' may be instantiated")
         return object.__new__(cls)
-    
-    def __init__(): #, driver):
-        pass #self.driver = driver
 
     def click(self, element):
-        LOG.info(f"clicking element: {element.text}")
+        if (APM.automation_name == 'uiautomator2'):
+            LOG.info(f"clicking element: {element.tag_name}")
+        elif (APM.automation_name == 'XCUITest'):
+            LOG.info(f"clicking element: {element.text}")
         element.click()
 
     def find_element_by_id(self, id):

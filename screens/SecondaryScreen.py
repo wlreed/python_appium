@@ -3,8 +3,12 @@ from config import *
 from screens.Screen import Screen
 
 class SecondaryScreen(Screen):
+    def __new__(cls):
+        if cls is Screen:
+            raise TypeError(f"only children of '{cls.__name__}' may be instantiated")
+        return object.__new__(cls)
+
     def __init__(self):
-        LOG.info("instantiating HomeScreen")
         self.string_map = dict(
             back_button_id = "Navigate Up",
             back_button_predicate = "name == \"TheApp\" AND label == \"TheApp\" "
