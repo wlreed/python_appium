@@ -9,12 +9,12 @@ class SecondaryScreen(Screen):
         return object.__new__(cls)
 
     def __init__(self):
+        super().__init__()
         self.string_map = dict(
             back_button_id = "Navigate Up",
             back_button_predicate = "name == \"TheApp\" AND label == \"TheApp\" "
     + "AND type == \"XCUIElementTypeButton\""
         )
-        super().__init__
 
     def back_button_element(self):
         if (APM.automation_name == 'XCUITest'):

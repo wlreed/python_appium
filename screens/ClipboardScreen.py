@@ -4,5 +4,4 @@ from screens.SecondaryScreen import SecondaryScreen
 
 class ClipboardScreen(SecondaryScreen):
     def __init__(self):
-        LOG.info("instantiating ClipboardScreen")
         super().__init__()
