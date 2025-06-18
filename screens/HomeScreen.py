@@ -5,7 +5,7 @@ from screens.Screen import Screen
 class HomeScreen(Screen):
 
     def __init__(self):
-        LOG.info("instantiating HomeScreen")
+        super().__init__()
         self.string_map = dict(
             echo_box = "Echo Box",
             login = "Login Screen",
@@ -20,7 +20,6 @@ class HomeScreen(Screen):
             geolocation = "Geolocation Demo",
             picker = "Picker Demo"
         )
-        super().__init__
 
     def echo_box_element(self):
         return self.find_element_by_id(self.string_map['echo_box'])

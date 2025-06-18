@@ -2,11 +2,16 @@ from config import *
 from appium.webdriver.common.appiumby import AppiumBy
 
 class Screen:
+    page_source = ""
 
     def __new__(cls):
         if cls is Screen:
             raise TypeError(f"only children of '{cls.__name__}' may be instantiated")
         return object.__new__(cls)
+    
+    def __init__(self):
+        LOG.info(f"Instantiating: {self.__module__[8:]}")
+        self.page_source = self.get_page_source()
 
     def click(self, element):
         if (APM.automation_name == 'uiautomator2'):
@@ -21,6 +26,9 @@ class Screen:
     
     def find_element_by_ios_predicate(self, predicate):
         return APM.driver.find_element(by=AppiumBy.IOS_PREDICATE, value=predicate)
+    
+    def get_page_source(self):
+        return APM.driver.page_source
     
     def send_keys(self, locator, content):
         if str(locator).endswith("_XPATH"):
